@@ -11,7 +11,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
-    isLoggedIn(false)
+    setIsLoggedIn(false)
     navigate("/login")
 
   }
@@ -20,14 +20,22 @@ const Header = () => {
       <nav className='navbar container pt-3 pb-3 align-items-start'>
         <Link className='navbar-brand text-light' to="/">stock prediction portal</Link>
 
-        {isLoggedIn ? (<button classname='btn-outline-danger' onClick={handleLogout}>logout</button>
+        {isLoggedIn ? (<>
+        <div>
+          <Button text='Dashboard' classname='btn-outline-info' url='/dashboard' />
+          &nbsp;
+          <button className='btn btn-outline-danger' onClick={ handleLogout }>logout</button>
+          </div>
+        </>
         ) : (
           <>
+          <div>
             <Button text='login' classname='btn-outline-info' url='/login' />
             &nbsp;
             <Button text='register' classname='btn-info' url='/register' />
-
-          </>)}
+            </div>
+            </>
+          )}
 
 
       </nav>
